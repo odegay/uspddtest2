@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+
+.line-break {
+    white-space: pre-wrap;
+}
+
+.standard-padding {
+    padding: 1em 1em 1em 1em;
+    vertical-align: middle
+}
+
+.small-responsive-font {
+  font-size:1vw
+}
+
+.big-responsive-font {
+  font-size:1.5vw
+}
+

@@ -1,0 +1,96 @@
+
+{
+    "id" : "1",
+    "question": "A driver approaching a flashing red traffic signal must",
+    "rightanswer" : 4,
+    "answers" : [ 
+        {
+            "id" : "1",
+            "answer" : "Slow down at the light"
+        }, 
+        {
+            "id" : "2",
+            "answer" : "Drive carefully without stoppingC"
+        }, 
+        {
+            "id" : "3",
+            "answer" : "Merge to the right"
+        }, 
+        {
+            "id" : "4",
+            "answer" : "Stop before entering the intersection"
+        }
+    ]
+}
+
+{
+    "id" : "2",
+    "question": "In New Jersey, persons under 21 years of age are considered under the influence (DUI) when their BAC is:<br>DUI = driving under the influence<br>BAC = blood alcohol concentrtion",
+    "rightanswer" : 4,
+    "answers" : [ 
+        {
+            "id" : "1",
+            "answer" : "0.01"
+        }, 
+        {
+            "id" : "2",
+            "answer" : "0.05"
+        }, 
+        {
+            "id" : "3",
+            "answer" : "0.1"
+        }, 
+        {
+            "id" : "4",
+            "answer" : "all of the above"
+        }
+    ]
+}
+
+{
+    "id" : "3",
+    "question": "You can practice drive with a valid special learner's permit:",
+    "rightanswer" : 3,
+    "answers" : [ 
+        {
+            "id" : "1",
+            "answer" : "Between 12:01 a.m. and 5 a.m."
+        }, 
+        {
+            "id" : "2",
+            "answer" : "Between 9 a.m. and 9 p.m."
+        }, 
+        {
+            "id" : "3",
+            "answer" : "Between 5:01 a.m. and 11 p.m."
+        }, 
+        {
+            "id" : "4",
+            "answer" : "Anytime"
+        }
+    ]
+}
+
+{
+    "id" : "4",
+    "question": "As you dirve, you're required to stop your vehicle:",
+    "rightanswer" : 4,
+    "answers" : [ 
+        {
+            "id" : "1",
+            "answer" : "at an intersection with a stop sign"
+        }, 
+        {
+            "id" : "2",
+            "answer" : "Where there is a red light"
+        }, 
+        {
+            "id" : "3",
+            "answer" : "When a traffic officer orders you to stop"
+        }, 
+        {
+            "id" : "4",
+            "answer" : "All of the above"
+        }
+    ]
+}

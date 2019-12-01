@@ -1,0 +1,84 @@
+<div>
+    <div class="row ">
+            <div class="col-12 text-center big-responsive-font" style="width:100%;">
+                <h4>List of questions</h4>
+            </div>            
+    </div>
+    <div class="row justify-content-center align-items-center" style="border-style: dotted; ">
+        <div class="col-1 text-center big-responsive-font" >
+            <h4>...</h4>
+        </div>            
+        <div class="col-1 text-center big-responsive-font" >
+                <h4>Question ID</h4>
+        </div>            
+        <div class="col-5 text-center big-responsive-font" >
+                <h4>Question</h4>
+        </div>              
+        <div class="col-5 text-center big-responsive-font" >
+                <h4>Answer</h4>
+        </div>                                    
+    </div>
+    <div class="row justify-content-center align-items-center" style="border-style: dotted; " *ngFor="let question of questions">
+                <div class="col-1 text-center big-responsive-font" >
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                                <button id="btnqid{{question.id}}" type="button" class="btn btn-secondary" (click)="openModal(template, question.id)"><i class="far fa-edit"></i></button>
+                                <button type="button" class="btn btn-secondary" (click)="deleteQuestion(question.id)"><i class="far fa-trash-alt"></i></button>
+                        </div>
+                </div>            
+                <div class="col-1 text-center big-responsive-font" >
+                        <h4>{{question.id}}</h4>
+                </div>            
+                <div class="col-5 text-center big-responsive-font" >
+                        <h4>{{question.question}}</h4>
+                </div>              
+                <div class="col-5 text-center big-responsive-font" >
+                        <div class="row " *ngFor="let answer of question.answers">
+                            <div class="col-12 text-left small-responsive-font">
+                                {{answer.id}} {{answer.answer}}
+                                <b *ngIf="answer.id==question.rightanswer">X</b>
+                            </div>
+                        </div>
+                </div>                                    
+    </div>
+    <div  class="row justify-content-center align-items-center" style="border-style: dotted; ">
+        <div class="col-12 text-center big-responsive-font" >
+                <div class="btn-group" role="group" aria-label="Basic example">
+                        <button id="btnNewQuestion" type="button" class="btn btn-outline-danger standard-padding" (click)="openModal(template, null)"><i class="far fa-edit"></i>New question</button>
+                </div>
+        </div> 
+    </div>
+
+    <ng-template #template>
+                <div class="modal-header">
+                <h4 class="modal-title pull-left">{{questionAction}}</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                        <form>
+                                <div class="form-group has-error">
+                                        <label class="control-label" for="question{{curQuestion.id}}">Question</label>
+                                        <textarea class="form-control" id="question{{curQuestion.id}}" placeholder="Enter the question" value="{{curQuestion.question}}" rows=3></textarea>
+<!--                                        <small id="questionError" class="form-text text-muted help-block">Enter a question</small> -->
+                                </div>
+                                <div class="form-row">
+                                        <div class="col">ANSWER</div>
+                                        <div class="col">Right answer</div>
+                                </div>
+                                <div class="form-row" *ngFor="let answer of curQuestion.answers">
+                                        <div class="col has-error">
+                                                <input type="text" class="form-control" id="answer{{answer.id}}" placeholder="Enter answer option" value={{answer.answer}}>
+                                        </div>
+                                        <div class="col has-error">                                                
+                                                <input type="radio" name="answerGroup{{curQuestion.id}}" id = "answerq{{curQuestion.id}}a{{answer.id}}L" [checked]="curQuestion.rightanswer == answer.id">
+                                        </div>
+                                </div>
+                                <div class="form-row">
+                                        <div class="col standard-padding ">
+                                                <button type="button" class="btn btn-primary btn-lg" (click)="saveForm()">Save</button>
+                                        </div>
+                                </div>
+                        </form>
+                </div>
+      </ng-template>
+</div>

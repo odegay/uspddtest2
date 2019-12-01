@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row standard-padding" *ngIf="curQuestion">
+        <div class="col-6 text-left small-responsive-font" style="width:50%;">
+            Question {{currentPage}} of {{pageSize}}
+        </div>
+        <div class="col-6 text-right small-responsive-font" style="width:50%;">
+            Answered {{cntRightAnswers()}} of {{pageSize}} - {{(cntRightAnswers()/pageSize)*100}}%
+        </div>
+    </div>
+    <div class="row standard-padding" *ngIf="curQuestion">
+        <div class="row">
+            <div class="col-12 text-center big-responsive-font">
+                <p>{{curQuestion.question}}</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="curQuestion" id="curquestioncontainer">
+        <div class="row standard-padding small-responsive-font">
+            <div class="col-12 text-center">
+                    UP ADV
+            </div>
+        </div> 
+        <div class="row standard-padding big-responsive-font">
+            <div class="col-12 text-center funkyradio">
+                <div class="col-12 text-left" *ngFor="let answer of curQuestion.answers" id="answerq{{curQuestion.id}}a{{answer.id}}">
+                    <div [ngClass]="{
+                        'funkyradio-success': curQuestion.isSubmitted && (answer.id == curQuestion.rightanswer),
+                        'funkyradio-danger': curQuestion.isSubmitted && (answer.id != curQuestion.rightanswer) && (answer.id == curQuestion.userAnswerId),
+                        'funkyradio-default': !curQuestion.isSubmitted && (answer.id != curQuestion.userAnswerId),
+                        'funkyradio-primary': !curQuestion.isSubmitted && (answer.id == curQuestion.userAnswerId),
+                        'funkyradio-default': curQuestion.isSubmitted && (answer.id != curQuestion.rightanswer) && (answer.id != curQuestion.userAnswerId)
+                        }">
+                        <input type="radio" 
+                            (click)="answerChosen(answer.id)" 
+                            name="answerGroup{{curQuestion.id}}"                         
+                            [disabled]="curQuestion.isSubmitted" 
+                            [checked]="(curQuestion.userAnswerId === answer.id)"
+                            id = "answerq{{curQuestion.id}}a{{answer.id}}L">
+                        <label for = "answerq{{curQuestion.id}}a{{answer.id}}L">&nbsp; {{answer.answer}}</label>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="row standard-padding">
+                <div class="col-12 text-center small-responsive-font" >
+                        DOWN ADV
+                </div>
+        </div> 
+        <div class="row standard-padding">
+                <div class="col-12 text-center">
+                        <div class="btn-group" style="width:100%" >
+                                <button class="btn btn-outline-secondary big-responsive-font" (click)="getPrevQuestion()" [disabled]="currentPage==1"><i class="fas fa-angle-double-left"></i> PREV</button>
+                                <button class="btn btn-outline-secondary big-responsive-font" (click)="submitQuestion()" [disabled]="(curQuestion.userAnswerId==0)||(curQuestion.isSubmitted)">SUBMIT</button>
+                                <button class="btn btn-outline-secondary big-responsive-font" (click)="getNextQuestion()" [disabled]="currentPage==pageSize">NEXT <i class="fas fa-angle-double-right"></i></button>
+                        </div>            
+                </div>
+        </div>
+    </div>
+</div>
