@@ -46,4 +46,9 @@ export class TestRunService {
       console.log(' saveQuestion data ERROR = ' + JSON.stringify(data));
     }
    }
+
+   getTranslation(qId, lang) {
+    return this.http.get('api/test/translation/' + qId + '/' + lang);
+  }
+
 }

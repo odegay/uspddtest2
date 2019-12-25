@@ -11,6 +11,11 @@
     vertical-align: middle
 }
 
+.question-padding {
+  padding: 1em 1em 0em 1em;
+  vertical-align: middle
+}
+
 .small-responsive-font {
   font-size:1vw
 }

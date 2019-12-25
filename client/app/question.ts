@@ -7,6 +7,7 @@ export class Question {
     answers;
     userAnswerId;
     isSubmitted;
+    translation;
 
     constructor(data) {
         if (data) {
@@ -17,6 +18,7 @@ export class Question {
             this.answers = data.answers;
             this.userAnswerId = 0;
             this.isSubmitted = false;
+            this.translation = data.translation;
         } else {
             this.sysId = '';
             this.id = '';

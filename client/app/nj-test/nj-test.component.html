@@ -1,19 +1,31 @@
 <div class="container-fluid">
     <div class="row standard-padding" *ngIf="curQuestion">
-        <div class="col-6 text-left small-responsive-font" style="width:50%;">
+        <div class="col-5 text-left small-responsive-font" style="width:50%;">
             Question {{currentPage}} of {{pageSize}}
         </div>
-        <div class="col-6 text-right small-responsive-font" style="width:50%;">
+        <div class = "col-2 text-right small-responsive-font">
+                <i class='flag-icon flag-icon-us'></i>
+
+            <select id = "transLangSelector" class="selectpicker" (change)="changeLang()">
+                    <option id="eng" data-content="<i class='flag-icon flag-icon-us'></i>" selected><i class='flag-icon flag-icon-mx'></i>English</option>
+                    <option id="rus" data-content="<i class='flag-icon flag-icon-ru'></i>">Русский</option>
+                    <option id="spa" data-content="<i class='flag-icon flag-icon-mx'></i>">Español</option>
+            </select>
+        </div>
+        <div class="col-5 text-right small-responsive-font" style="width:50%;">
             Answered {{cntRightAnswers()}} of {{pageSize}} - {{(cntRightAnswers()/pageSize)*100}}%
         </div>
     </div>
-    <div class="row standard-padding" *ngIf="curQuestion">
+    <div class="row question-padding" *ngIf="curQuestion">
         <div class="row">
-            <div class="col-12 text-center big-responsive-font">
+            <div id = "curQuestionDiv" class="col-12 text-left big-responsive-font">
+                <small *ngIf="translation" id="questionTranslation" class="text-muted text-left standart-padding">{{translation.langid.toUpperCase()}}: {{translation.langquestion}}</small>
                 <p>{{curQuestion.question}}</p>
+                            
             </div>
         </div>
     </div>
+
     <div *ngIf="curQuestion" id="curquestioncontainer">
         <div class="row standard-padding small-responsive-font">
             <div class="col-12 text-center">
@@ -22,7 +34,8 @@
         </div> 
         <div class="row standard-padding big-responsive-font">
             <div class="col-12 text-center funkyradio">
-                <div class="col-12 text-left" *ngFor="let answer of curQuestion.answers" id="answerq{{curQuestion.id}}a{{answer.id}}">
+                <div class="col-12 text-left" *ngFor="let answer of curQuestion.answers; index as arrayIndex" id="answerq{{curQuestion.id}}a{{answer.id}}">
+                    <small *ngIf="translation" id="questionTranslation" class="text-muted t">{{translation.langid.toUpperCase()}}: {{translation.langanswers[arrayIndex].langanswer}}</small>
                     <div [ngClass]="{
                         'funkyradio-success': curQuestion.isSubmitted && (answer.id == curQuestion.rightanswer),
                         'funkyradio-danger': curQuestion.isSubmitted && (answer.id != curQuestion.rightanswer) && (answer.id == curQuestion.userAnswerId),
@@ -30,13 +43,14 @@
                         'funkyradio-primary': !curQuestion.isSubmitted && (answer.id == curQuestion.userAnswerId),
                         'funkyradio-default': curQuestion.isSubmitted && (answer.id != curQuestion.rightanswer) && (answer.id != curQuestion.userAnswerId)
                         }">
+                                    
                         <input type="radio" 
                             (click)="answerChosen(answer.id)" 
                             name="answerGroup{{curQuestion.id}}"                         
                             [disabled]="curQuestion.isSubmitted" 
                             [checked]="(curQuestion.userAnswerId === answer.id)"
                             id = "answerq{{curQuestion.id}}a{{answer.id}}L">
-                        <label for = "answerq{{curQuestion.id}}a{{answer.id}}L">&nbsp; {{answer.answer}}</label>
+                        <label for = "answerq{{curQuestion.id}}a{{answer.id}}L">&nbsp; {{answer.answer}}</label>                        
                     </div>
                 </div>    
             </div>
